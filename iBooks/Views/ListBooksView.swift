@@ -2,24 +2,24 @@ import SwiftUI
 
 struct ListBooksView: View {
     
+    // MARK: - Variables
     @ObservedObject var listBooks = ViewModel()
     
-    @State var books = [Item]()
-    
+    // MARK: - Init
     init(){
         UITableView.appearance().backgroundColor = .clear
         UITableViewCell.appearance().backgroundColor = .clear
         UITableView.appearance().tableFooterView = UIView()
     }
     
+    // MARK: - View
     var body: some View {
         NavigationView {
             
             ZStack {
                 Color.white.ignoresSafeArea()
                 VStack {
-//                    Text("iBooks").font(.system(size: 21, weight: .bold)).foregroundColor(.black)
-                    List(books, id: \.id) { book in
+                    List(listBooks.books, id: \.id) { book in
                         NavigationLink {
                             BookDetailView(book: book)
                         } label: {
@@ -27,18 +27,13 @@ struct ListBooksView: View {
                         }
                     }.task {
                         await listBooks.loadData()
-                        books.append(contentsOf: listBooks.books)
                     }.refreshable {
-                        books.removeAll()
-                        await listBooks.loadData()
-                        books.append(contentsOf: listBooks.books)
+                        await listBooks.refreshData()
                     }
                 }
                 
             }
             .navigationTitle("iBooks")
-//            .navigationBarHidden(true)
-            
         }
     }
 }

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SectionDetailView: View {
+    //  MARK: - Variables
     @State var title: String
     @State var image: Image
     @State var detail: String
     
+    //  MARK: - View
     var body: some View {
         HStack {
             VStack(spacing: 5) {
@@ -32,8 +34,8 @@ struct SectionDetailView: View {
     }
 }
 
-//struct SectionDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SectionDetailView()
-//    }
-//}
+struct SectionDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        SectionDetailView(title: "TEST", image: Image("youtube"), detail: "Detail")
+    }
+}

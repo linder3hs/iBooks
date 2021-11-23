@@ -2,20 +2,15 @@ import Foundation
 
 // MARK: - Welcome
 class Welcome: Codable {
-    let kind: String
-    let totalItems: Int
     let items: [Item]
 
-    init(kind: String, totalItems: Int, items: [Item]) {
-        self.kind = kind
-        self.totalItems = totalItems
+    init(items: [Item]) {
         self.items = items
     }
 }
 
 // MARK: - Item
 class Item: Codable {
-    let kind: Kind
     let id, etag: String
     let selfLink: String
     let volumeInfo: VolumeInfo
@@ -23,8 +18,7 @@ class Item: Codable {
     let accessInfo: AccessInfo
     let searchInfo: SearchInfo?
 
-    init(kind: Kind, id: String, etag: String, selfLink: String, volumeInfo: VolumeInfo, saleInfo: SaleInfo, accessInfo: AccessInfo, searchInfo: SearchInfo?) {
-        self.kind = kind
+    init(id: String, etag: String, selfLink: String, volumeInfo: VolumeInfo, saleInfo: SaleInfo, accessInfo: AccessInfo, searchInfo: SearchInfo?) {
         self.id = id
         self.etag = etag
         self.selfLink = selfLink
@@ -88,10 +82,6 @@ enum TextToSpeechPermission: String, Codable {
 enum Viewability: String, Codable {
     case noPages = "NO_PAGES"
     case partial = "PARTIAL"
-}
-
-enum Kind: String, Codable {
-    case booksVolume = "books#volume"
 }
 
 // MARK: - SaleInfo

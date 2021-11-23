@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    // MARK: - View
     var body: some View {
         VStack {
             Image("profile")
@@ -48,8 +49,22 @@ struct ProfileView: View {
                 }
             }
             Spacer()
+            List {
+                Button(action: call) {
+                    Label("Call me", systemImage: "phone.circle")
+                        .font(.body)
+                }
+            }
+            
         }
     }
+}
+
+// MARK: - Functions
+private func call() {
+    let phoneNumberformatted: String = "tel://+51967617166"
+    guard let url = URL(string: phoneNumberformatted) else { return }
+    UIApplication.shared.open(url)
 }
 
 struct Profile_Previews: PreviewProvider {

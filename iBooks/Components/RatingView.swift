@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RatingView: View {
+    //  MARK: - Variables
     @Binding var rating: Int
     
     var label = ""
@@ -20,6 +21,7 @@ struct RatingView: View {
     var offColor = Color.gray
     var onColor = Color.yellow
     
+    //  MARK: - View
     var body: some View {
         HStack {
             if label.isEmpty == false {
@@ -32,7 +34,6 @@ struct RatingView: View {
                     .onTapGesture {
                         self.rating = number
                     }
-                
             }
         }
     }
